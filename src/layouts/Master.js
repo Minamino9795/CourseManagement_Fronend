@@ -1,11 +1,16 @@
 import React from 'react';
+import Header from "../includes/Header";
+import Sidebar from "../includes/Sidebar";
 
-
-function Master(props) {
+function Master({children}) {
     return (
-        <div>
+        <>
          
-        </div>
+         <Header />
+      { children }
+      <Sidebar />
+
+        </>
     );
 }
 

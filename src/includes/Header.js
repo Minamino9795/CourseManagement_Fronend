@@ -1045,7 +1045,7 @@ function Header(props) {
                   <div className="header__cart">
                     <a href="#">
                       {" "}
-                      <i className="icofont-cart-alt" />
+                      <i class="icofont-cart-alt"></i>
                     </a>
                     <div className="header__right__dropdown__wrapper">
                       <div className="header__right__dropdown__inner">

@@ -6,7 +6,7 @@ import Master from './layouts/Master';
 function App() {
   return (
    <Routes>  
-  
+   <Route path="/layouts" element={<Master />} />
    </Routes>
  
   );

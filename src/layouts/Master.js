@@ -1,11 +1,13 @@
 import React from 'react';
+import Header from "../includes/Header";
+import Footer from "../includes/Footer";
 
-
-function Master(props) {
+function Master({ children }) {
     return (
         <div>
-         
-        </div>
+        <Header/>
+        <Footer/>
+       </div>
     );
 }
 

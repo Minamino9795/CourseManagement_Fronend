@@ -152,23 +152,43 @@
                 a(this).trigger("tilt.mouseLeave")
             },
             h = function() {
-                var b = a(this).outerWidth(),
-                    c = a(this).outerHeight(),
-                    d = a(this).offset().left,
-                    e = a(this).offset().top,
-                    f = (this.mousePositions.x - d) / b,
-                    g = (this.mousePositions.y - e) / c,
-                    h = (this.settings.maxTilt / 2 - f * this.settings.maxTilt).toFixed(2),
-                    k = (g * this.settings.maxTilt - this.settings.maxTilt /
-                        2).toFixed(2);
-                return { tiltX: h, tiltY: k, percentageX: 100 * f, percentageY: 100 * g, angle: 180 / Math.PI * Math.atan2(this.mousePositions.x - (d + b / 2), -(this.mousePositions.y - (e + c / 2))) }
+                // Kiểm tra xem this.mousePositions có tồn tại và có thuộc tính x không
+                if (this.mousePositions && typeof this.mousePositions.x !== 'undefined') {
+                    var b = a(this).outerWidth(),
+                        c = a(this).outerHeight(),
+                        d = a(this).offset().left,
+                        e = a(this).offset().top,
+                        f = (this.mousePositions.x - d) / b,
+                        g = (this.mousePositions.y - e) / c,
+                        h = (this.settings.maxTilt / 2 - f * this.settings.maxTilt).toFixed(2),
+                        k = (g * this.settings.maxTilt - this.settings.maxTilt / 2).toFixed(2);
+                    return {
+                        tiltX: h,
+                        tiltY: k,
+                        percentageX: 100 * f,
+                        percentageY: 100 * g,
+                        angle: 180 / Math.PI * Math.atan2(this.mousePositions.x - (d + b / 2), -(this.mousePositions.y - (e + c / 2)))
+                    };
+                } else {
+                    // Xử lý trường hợp khi this.mousePositions hoặc this.mousePositions.x không được định nghĩa
+                    // Bạn có thể trả về giá trị mặc định hoặc xử lý theo cách khác
+                    return {
+                        tiltX: 0,
+                        tiltY: 0,
+                        percentageX: 0,
+                        percentageY: 0,
+                        angle: 0
+                    };
+                }
             },
+            
             f = function() {
                 this.transforms = h.call(this);
                 this.reset ? (this.reset = !1, a(this).css("transform", "perspective(" + this.settings.perspective + "px) rotateX(0deg) rotateY(0deg)"), this.settings.glare && (this.glareElement.css("transform", "rotate(180deg) translate(-50%, -50%)"), this.glareElement.css("opacity", "0"))) : (a(this).css("transform", "perspective(" +
-                        this.settings.perspective + "px) rotateX(" + ("x" === this.settings.disableAxis ? 0 : this.transforms.tiltY) + "deg) rotateY(" + ("y" === this.settings.disableAxis ? 0 : this.transforms.tiltX) + "deg) scale3d(" + this.settings.scale + "," + this.settings.scale + "," + this.settings.scale + ")"), this.settings.glare && (this.glareElement.css("transform", "rotate(" + this.transforms.angle + "deg) translate(-50%, -50%)"), this.glareElement.css("opacity", "" + this.transforms.percentageY * this.settings.maxGlare / 100)), a(this).trigger("change", [this.transforms]),
-                    this.ticking = !1)
-            },
+                    this.settings.perspective + "px) rotateX(" + ("x" === this.settings.disableAxis ? 0 : this.transforms.tiltY) + "deg) rotateY(" + ("y" === this.settings.disableAxis ? 0 : this.transforms.tiltX) + "deg) scale3d(" + this.settings.scale + "," + this.settings.scale + "," + this.settings.scale + ")"), this.settings.glare && (this.glareElement.css("transform", "rotate(" + this.transforms.angle + "deg) translate(-50%, -50%)"), this.glareElement.css("opacity", "" + this.transforms.percentageY * this.settings.maxGlare / 100)), a(this).trigger("change", [this.transforms]),
+                this.ticking = !1)
+            };
+            
             m = function() { this.glareElement.css({ width: "" + 2 * a(this).outerWidth(), height: "" + 2 * a(this).outerWidth() }) };
         a.fn.tilt.destroy = function() {
             a(this).each(function() {

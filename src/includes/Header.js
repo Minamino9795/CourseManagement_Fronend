@@ -1071,50 +1071,6 @@ function Header(props) {
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div className="single__header__right__dropdown">
-                                                    <div className="header__right__dropdown__img">
-                                                        <a href="#">
-                                                            <img
-                                                                loading="lazy"
-                                                                src="img/grid/cart2.jpg"
-                                                                alt="photo"
-                                                            />
-                                                        </a>
-                                                    </div>
-                                                    <div className="header__right__dropdown__content">
-                                                        <a href="shop-product.html">Design Minois</a>
-                                                        <p>
-                                                            1 x <span className="price">$ 60.00</span>
-                                                        </p>
-                                                    </div>
-                                                    <div className="header__right__dropdown__close">
-                                                        <a href="#">
-                                                            <i className="icofont-close-line" />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div className="single__header__right__dropdown">
-                                                    <div className="header__right__dropdown__img">
-                                                        <a href="#">
-                                                            <img
-                                                                loading="lazy"
-                                                                src="img/grid/cart3.jpg"
-                                                                alt="photo"
-                                                            />
-                                                        </a>
-                                                    </div>
-                                                    <div className="header__right__dropdown__content">
-                                                        <a href="shop-product.html">Crash Course</a>
-                                                        <p>
-                                                            1 x <span className="price">$ 70.00</span>
-                                                        </p>
-                                                    </div>
-                                                    <div className="header__right__dropdown__close">
-                                                        <a href="#">
-                                                            <i className="icofont-close-line" />
-                                                        </a>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <p className="dropdown__price">
                                                 Total: <span>$1,100.00</span>

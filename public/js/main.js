@@ -362,11 +362,16 @@
 
         /* Tilter Activation */
         if ($('[data-tilt]').length) {
-
+          // Đảm bảo rằng plugin "tilt" đã được tải và khởi tạo
+          if (typeof $.fn.tilt !== 'undefined') {
             $('[data-tilt]').tilt({
-                perspective: 2000,
+              perspective: 2000,
             });
-
+          } else {
+            // Xử lý trường hợp plugin "tilt" không tải thành công
+            // Bạn có thể hiển thị thông báo lỗi hoặc xử lý theo cách khác tùy thuộc vào yêu cầu
+            console.error("Plugin 'tilt' is not loaded.");
+          }
         }
         /* ----------------------------
             AOS Scroll Animation 

@@ -154,33 +154,35 @@
             h = function() {
                 // Kiểm tra xem this.mousePositions có tồn tại và có thuộc tính x không
                 if (this.mousePositions && typeof this.mousePositions.x !== 'undefined') {
-                    var b = a(this).outerWidth(),
-                        c = a(this).outerHeight(),
-                        d = a(this).offset().left,
-                        e = a(this).offset().top,
-                        f = (this.mousePositions.x - d) / b,
-                        g = (this.mousePositions.y - e) / c,
-                        h = (this.settings.maxTilt / 2 - f * this.settings.maxTilt).toFixed(2),
-                        k = (g * this.settings.maxTilt - this.settings.maxTilt / 2).toFixed(2);
-                    return {
-                        tiltX: h,
-                        tiltY: k,
-                        percentageX: 100 * f,
-                        percentageY: 100 * g,
-                        angle: 180 / Math.PI * Math.atan2(this.mousePositions.x - (d + b / 2), -(this.mousePositions.y - (e + c / 2)))
-                    };
+                  var b = a(this).outerWidth(),
+                      c = a(this).outerHeight(),
+                      d = a(this).offset().left,
+                      e = a(this).offset().top,
+                      f = (this.mousePositions.x - d) / b,
+                      g = (this.mousePositions.y - e) / c,
+                      h = (this.settings.maxTilt / 2 - f * this.settings.maxTilt).toFixed(2),
+                      k = (g * this.settings.maxTilt - this.settings.maxTilt / 2).toFixed(2),
+                      angle = 180 / Math.PI * Math.atan2(this.mousePositions.x - (d + b / 2), -(this.mousePositions.y - (e + c / 2)));
+              
+                  return {
+                    tiltX: h,
+                    tiltY: k,
+                    percentageX: 100 * f,
+                    percentageY: 100 * g,
+                    angle: angle
+                  };
                 } else {
-                    // Xử lý trường hợp khi this.mousePositions hoặc this.mousePositions.x không được định nghĩa
-                    // Bạn có thể trả về giá trị mặc định hoặc xử lý theo cách khác
-                    return {
-                        tiltX: 0,
-                        tiltY: 0,
-                        percentageX: 0,
-                        percentageY: 0,
-                        angle: 0
-                    };
+                  // Xử lý trường hợp khi this.mousePositions hoặc this.mousePositions.x không được định nghĩa
+                  // Bạn có thể trả về giá trị mặc định hoặc xử lý theo cách khác
+                  return {
+                    tiltX: 0,
+                    tiltY: 0,
+                    percentageX: 0,
+                    percentageY: 0,
+                    angle: 0
+                  };
                 }
-            },
+              };
             
             f = function() {
                 this.transforms = h.call(this);

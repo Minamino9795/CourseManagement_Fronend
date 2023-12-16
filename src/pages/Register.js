@@ -36,8 +36,7 @@ function Register(props) {
     const handleSubmit = (values) => {
         console.log("có nhấn nút submit", values);
         UserModel.register(values)
-            .then((res) => {
-                // console.log(values);
+            .then((res) => {              
                 handleRegisterSuccess();
                 navigate("/login");
             })
@@ -47,9 +46,9 @@ function Register(props) {
                     title: 'Email đã tồn tại',
 
                     showConfirmButton: false,
-                    timer: 1500, // Tăng thời gian hiển thị lên 1.5 giây
-                    timerProgressBar: true, // Thêm thanh tiến trình thời gian
-                    toast: true, // Sử dụng kiểu thông báo "toast"
+                    timer: 1500, 
+                    timerProgressBar: true, 
+                    toast: true,
                     showClass: {
                         popup: 'swal2-noanimation',
                         backdrop: 'swal2-noanimation',
@@ -68,9 +67,9 @@ function Register(props) {
             title: 'Đăng ký thành công vui lòng đăng nhập',
 
             showConfirmButton: false,
-            timer: 1500, // Tăng thời gian hiển thị lên 1.5 giây
-            timerProgressBar: true, // Thêm thanh tiến trình thời gian
-            toast: true, // Sử dụng kiểu thông báo "toast"
+            timer: 1500, 
+            timerProgressBar: true,
+            toast: true, 
             showClass: {
                 popup: 'swal2-noanimation',
                 backdrop: 'swal2-noanimation',
@@ -152,8 +151,7 @@ function Register(props) {
                                 <p className="login__description">
                                     Bạn đã có tài khoản?{" "}
                                     <a
-                                        href="/login"
-                                        data-bs-toggle="modal"
+                                        href="/login"                                       
                                         data-bs-target="#registerModal"
                                     >
                                         Đăng nhập

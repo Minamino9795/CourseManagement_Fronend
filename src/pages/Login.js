@@ -33,9 +33,9 @@ function Login(props) {
                     title: 'Đăng nhập thất bại',
 
                     showConfirmButton: false,
-                    timer: 1500, // Tăng thời gian hiển thị lên 1.5 giây
-                    timerProgressBar: true, // Thêm thanh tiến trình thời gian
-                    toast: true, // Sử dụng kiểu thông báo "toast"
+                    timer: 1500, 
+                    timerProgressBar: true, 
+                    toast: true, 
                     showClass: {
                         popup: 'swal2-noanimation',
                         backdrop: 'swal2-noanimation',
@@ -137,8 +137,7 @@ function Login(props) {
                                 <p className="login__description">
                                     Bạn vẫn chưa có tài khoản?{" "}
                                     <a
-                                        href="#"
-                                        data-bs-toggle="modal"
+                                        href="/register"
                                         data-bs-target="#registerModal"
                                     >
                                         Đăng ký miễn phí
@@ -190,21 +189,7 @@ function Login(props) {
 
                                 </Form>
                             </Formik>
-                            <div className="login__social__option">
-                                <p>hoặc đăng nhập bằng</p>
-                                <ul className="login__social__btn">
-                                    <li>
-                                        <a className="default__button login__button__1" href="#">
-                                            <i className="icofont-facebook" /> facebook
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="default__button" href="#">
-                                            <i className="icofont-google-plus" /> Google
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -223,12 +208,7 @@ function Login(props) {
                         src="img/education/hero_shape3.png"
                         alt="Shape"
                     />
-                    <img
-                        loading="lazy"
-                        className="hero__shape hero__shape__3"
-                        src="img/education/hero_shape4.png"
-                        alt="Shape"
-                    />
+
                     <img
                         loading="lazy"
                         className="hero__shape hero__shape__4"

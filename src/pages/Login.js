@@ -53,9 +53,9 @@ function Login(props) {
             title: 'Đăng nhập thành công',
 
             showConfirmButton: false,
-            timer: 1500, // Tăng thời gian hiển thị lên 1.5 giây
-            timerProgressBar: true, // Thêm thanh tiến trình thời gian
-            toast: true, // Sử dụng kiểu thông báo "toast"
+            timer: 1500,
+            timerProgressBar: true, 
+            toast: true, 
             showClass: {
                 popup: 'swal2-noanimation',
                 backdrop: 'swal2-noanimation',

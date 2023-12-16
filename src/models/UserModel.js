@@ -2,7 +2,7 @@ import axios from "axios";
 
 class UserModel {
   constructor() {
-    this.api_url = "http://127.0.0.1:8000/api/auth/";
+    this.api_url = "http://127.0.0.1:8000/api/";
   }
   async login(credentials) {
     const res = await axios.post(this.api_url + "login", credentials);

@@ -23,7 +23,7 @@ function Login(props) {
             .then((res) => {
                 UserModel.setCookie("customer", JSON.stringify(res.user), res.expires_in);
                 localStorage.setItem("token", res.access_token);
-                navigate("/checkout");
+                navigate("/");
 
                 handleLoginSuccess();
             })

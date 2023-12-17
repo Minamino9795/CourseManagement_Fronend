@@ -1,27 +1,15 @@
 import axios from "axios";
 
-class UserModel {
+class AuthModel {
   constructor() {
     this.api_url = "http://127.0.0.1:8000/api/";
   }
-  async login(credentials) {
-    const res = await axios.post(this.api_url + "login", credentials);
+  async fogotpassword(email) {
+    const res = await axios.post(this.api_url + "forgot_password", email);
     return res.data;
   }
 
-  async register(credentials) {
-    const res = await axios.post(this.api_url + "register", credentials);
-    return res.data;
-  }
-  async all() {
-    const res = await axios.get(this.api_url);
-    return res.data.data;
-  }
-
-  async find(id) {
-    const data = await axios.get(this.api_url + id);
-    return data.data;
-  }
+  
 
   async logout() {
     try {
@@ -65,4 +53,4 @@ class UserModel {
   }
 }
 
-export default new UserModel();
+export default new AuthModel();

@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Master from "../layouts/Master";
+import axios from "axios";
+import { VND } from "../extention/format";
 
 function Home(props) {
+  const [courses, setProducts] = useState([]);
+  const Urlnumber = 'http://127.0.0.1:8000/';
+
+  useEffect(() => {
+    // Gọi API để lấy danh sách sản phẩm
+    axios.get('http://127.0.0.1:8000/api/courses')
+      .then(response => {
+        setProducts(response.data);
+        console.log(response);
+      })
+      .catch(error => {
+        console.error('Error fetching product data:', error);
+      });
+  }, []);
+  const [visibleProducts, setVisibleProducts] = useState(3);
+
+  // Hàm xử lý khi nhấn vào nút "Show more"
+  const handleShowMore = () => {
+    setVisibleProducts(visibleProducts + 3);
+  };
+
   return (
+
     <Master>
       <div className="herobannerarea herobannerarea__box">
         <div className="container">
@@ -305,238 +329,114 @@ function Home(props) {
           </div>
         </div>
       </div>
+
+
+
+
       <div className="gridarea gridarea__2">
         <div className="container">
           <div className="row grid__row">
-            <div
-              className="col-xl-5 col-lg-5 col-md-12 col-sm-12 aos-init aos-animate"
-              data-aos="fade-up"
-            >
+            <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12" data-aos="fade-up">
               <div className="section__title__2">
                 <div className="section__title__button">
-                  <div className="default__small__button">Course List</div>
+                  <div className="default__small__button">Danh sách khóa học</div>
                 </div>
                 <div className="section__title__heading__2 section__title__heading__3 heading__fontsize__2">
-                  <h2>Perfect Online Course Your Carrer</h2>
+                  <h2>Khóa học trực tuyến hoàn hảo của bạn</h2>
                 </div>
               </div>
             </div>
-            <div
-              className="col-xl-7 col-lg-7 col-md-12 col-sm-12 aos-init aos-animate"
-              data-aos="fade-up"
-            >
+            <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12" data-aos="fade-up">
               <div className="gridfilter_nav grid__filter__2 gridFilter">
-                <button className="active" data-filter="*">
-                  See All
-                </button>
-                <button data-filter=".filter1" className="">
-                  Data science{" "}
-                </button>
-                <button data-filter=".filter2" className="">
-                  Engineering{" "}
-                </button>
-                <button data-filter=".filter3" className="">
-                  Featured{" "}
-                </button>
-                <button data-filter=".filter4" className="">
-                  Architecture
-                </button>
+
+
+
+
               </div>
             </div>
           </div>
-          <div
-            className="row grid aos-init aos-animate"
-            data-aos="fade-up"
-            style={{ position: "relative", height: "991.624px" }}
-          >
-            <div
-              className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item filter1 filter3"
-              style={{ position: "absolute", left: "0%", top: 0 }}
-            >
-              <div className="gridarea__wraper">
-                <div className="gridarea__img">
-                  <a href="course-details.html">
-                    <img loading="lazy" src="img/grid/grid_1.png" alt="grid" />
-                  </a>
-                  <div className="gridarea__small__button">
-                    <div className="grid__badge">Data &amp; Tech</div>
-                  </div>
-                  <div className="gridarea__small__icon">
-                    <a href="#">
-                      <i className="icofont-heart-alt" />
+
+
+
+          <div className="row grid" data-aos="fade-up">
+            {courses.slice(0, visibleProducts).map((course) => (
+              <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item filter1 filter3">
+                <div className="gridarea__wraper">
+                  <div className="gridarea__img">
+                    <a href="course-details.html">
+                      {Urlnumber + course.image_url}
                     </a>
-                  </div>
-                </div>
-                <div className="gridarea__content">
-                  <div className="gridarea__list">
-                    <ul>
-                      <li>
-                        <i className="icofont-book-alt" /> 23 Lesson
-                      </li>
-                      <li>
-                        <i className="icofont-clock-time" /> 1 hr 30 min
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="gridarea__heading">
-                    <h3>
-                      <a href="course-details.html">
-                        Foundation course to under stand about softwere
+
+                    <div className="gridarea__small__icon">
+                      <a href="#">
+                        <i className="icofont-heart-alt" />
                       </a>
-                    </h3>
+                    </div>
                   </div>
-                  <div className="gridarea__price">
-                    $32.00 <del>/ $67.00</del>
-                    <span>
-                      {" "}
-                      <del className="del__2">Free</del>
-                    </span>
-                  </div>
-                  <div className="gridarea__bottom">
-                    <a href="instructor-details.html">
-                      <div className="gridarea__small__img">
-                        <img
-                          loading="lazy"
-                          src="img/grid/grid_small_1.jpg"
-                          alt="grid"
-                        />
-                        <div className="gridarea__small__content">
-                          <h6>Micle Jhon</h6>
-                        </div>
+                  <div className="gridarea__content">
+                    <div className="gridarea__list">
+                      <ul>
+                        <li>
+                          <i className="icofont-book-alt" /> 23 Lesson
+                        </li>
+                        <li>
+                          <i className="icofont-clock-time" /> 1 hr 30 min
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="gridarea__heading">
+                      <h3>
+                        <a href="course-details.html">
+                          {course.name}
+                        </a>
+                      </h3>
+                    </div>
+                    <div className="gridarea__price">
+                      {course.price === 0 ? (
+                        <>
+                          Miễn phí
+                        </>
+                      ) : (
+                        <>
+                          {VND.format(course.price)} <del> / {VND.format(course.price + 500000)}</del>
+                          <span>
+                            {" "}
+                            <del className="del__2">Free</del>
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+                    <div className="gridarea__bottom">
+
+                      <div className="gridarea__star">
+                        <i className="icofont-star" />
+                        <i className="icofont-star" />
+                        <i className="icofont-star" />
+                        <i className="icofont-star" />
+                        <i className="icofont-star" />
+                        <span>(5k)</span>
                       </div>
-                    </a>
-                    <div className="gridarea__star">
-                      <i className="icofont-star" />
-                      <i className="icofont-star" />
-                      <i className="icofont-star" />
-                      <i className="icofont-star" />
-                      <i className="icofont-star" />
-                      <span>(44)</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
+            ))}
+            {visibleProducts < courses.length && (
+              <div className="col-12 text-center m-3">
+                <button className="btn btn-warning load-more-product" onClick={handleShowMore}>
+                  Show more
+                </button>
+              </div>
+            )}
+
           </div>
         </div>
       </div>
-      <div className="registerarea sp_top_90">
-        <div className="container">
-          <div className="row">
-            <div
-              className="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 aos-init aos-animate"
-              data-aos="fade-up"
-            >
-              <div className="registerarea__wraper">
-                <div className="section__title registerarea__section__title">
-                  <div className="section__title__button">
-                    <div className="default__small__button">Course List</div>
-                  </div>
-                  <div className="section__title__heading heading__underline">
-                    <h2>
-                      Register Your <span>Account </span>Get free access to{" "}
-                      <small>60000</small> online course
-                    </h2>
-                  </div>
-                </div>
-                <div className="registerarea__content">
-                  <div className="registerarea__video">
-                    <div className="video__pop__btn">
-                      <a
-                        className="video-btn"
-                        href="https://www.youtube.com/watch?v=vHdclsdkp28"
-                      >
-                        {" "}
-                        <img loading="lazy" src="img/icon/video.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="registerarea__para">
-                      <p>
-                        Learn Something new &amp; Build Your Career From
-                        Anywhere In The World
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 aos-init aos-animate"
-              data-aos="fade-up"
-            >
-              <div className="registerarea__form">
-                <div className="registerarea__form__heading">
-                  <h4>Fill Your Registration</h4>
-                </div>
-                <form action="#">
-                  <input
-                    className="register__input"
-                    type="text"
-                    placeholder="Your Name"
-                  />
-                  <div className="row">
-                    <div className="col-xl-6">
-                      <input
-                        className="register__input"
-                        type="text"
-                        placeholder="Email Address"
-                      />
-                    </div>
-                    <div className="col-xl-6">
-                      <input
-                        className="register__input"
-                        type="text"
-                        placeholder="Phone"
-                      />
-                    </div>
-                  </div>
-                  <input
-                    className="register__input"
-                    type="text"
-                    placeholder="Address"
-                  />
-                  <textarea
-                    className="register__input textarea"
-                    name="#"
-                    id="#"
-                    cols={30}
-                    rows={10}
-                    defaultValue={"Comment"}
-                  />
-                  <div className="registerarea__button">
-                    <a className="default__button" href="#">
-                      Sign Up
-                      <i className="icofont-long-arrow-right" />
-                    </a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="registerarea__img">
-          <img
-            loading="lazy"
-            className="register__1"
-            src="img/register/register__1.png"
-            alt="register"
-          />
-          <img
-            loading="lazy"
-            className="register__2"
-            src="img/register/register__2.png"
-            alt="register"
-          />
-          <img
-            loading="lazy"
-            className="register__3"
-            src="img/register/register__3.png"
-            alt="register"
-          />
-        </div>
-      </div>
+
     </Master>
+
+
   );
 }
 
